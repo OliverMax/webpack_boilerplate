@@ -23,9 +23,21 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader', // Creates `style` nodes from JS strings
+          'css-loader', // Translates CSS into CommonJS
+          'sass-loader', // Compiles Sass to CSS
+        ],
       },
     ],
   },
@@ -35,8 +47,6 @@ module.exports = {
       template: 'src/index.template.html',
       minify: true,
     }),
-    new ESLintPlugin({
-
-    }),
+    new ESLintPlugin(),
   ],
 };
